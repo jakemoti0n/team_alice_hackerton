@@ -1,132 +1,84 @@
-# 우리동네 리포터 🏘️
+# 우리동네 리포터 
 
-동네의 문제를 발견하고 신고하여 더 나은 우리 동네를 만드는 모바일 웹 애플리케이션입니다.
+"사진만 찍으세요. 모든 과정은 AI가 처리해 줍니다." 시민이 단 30초 만에 문제를 신고할 수 있도록 돕는 AI 기반 민원 솔루션
 
-## 주요 기능 ✨
+## 1. 기획 배경
 
-- 📸 **카메라 촬영 및 파일 업로드**: 문제 상황을 사진으로 기록
-- 🤖 **AI 분석**: 업로드된 사진과 설명을 AI가 분석하여 문제 유형 파악
-- 📍 **위치 정보**: GPS를 통한 정확한 위치 정보 수집 (AI 위치 추정 기능 포함)
-- 📧 **이메일 알림**: 담당자에게 자동으로 신고 내용 전송
-- 📋 **신고 내역 관리**: 제출한 신고들의 상태 확인 및 관리
-- 🗺️ **지도 뷰**: 신고 위치를 지도에서 시각적으로 확인
+민원의 불편함: 복잡한 절차와 긴 소요 시간으로 인해 포기하게 되는 지역 사회 문제들 
+패러다임의 변화: 디지털 취약계층도 사진 한 장으로 쉽게 참여할 수 있는 '간편한 신고 접수' 환경 조성
 
-## 기술 스택 🛠️
+## 2. 서비스 및 에이전트 파이프라인
 
-- **Frontend**: React 18, TypeScript
-- **UI 라이브러리**: Tailwind CSS, Radix UI
-- **빌드 도구**: Vite
-- **아이콘**: Lucide React
-- **알림**: Sonner (Toast notifications)
+> **4단계의 지능형 에이전트 시스템을 통해 민원 처리 전 과정을 자동화합니다.** 
 
-## 설치 및 실행 🚀
+![서비스 파이프라인](https://github.com/user-attachments/assets/211b685c-dd60-40c6-8058-ed54a06ca79d)
+![에이전트 아키텍처](https://github.com/user-attachments/assets/6576b0e7-b8e6-48f1-b55c-d2c54bd61f48)
 
-### 1. 의존성 설치
+| 단계 | 에이전트명 | 주요 역할 및 기능 | 기술적 특징 |
+| :--- | :--- | :--- | :--- |
+| **01** | **Preprocess & Vision** | 사진 데이터(EXIF) 분석 및 객체 감지 [cite: 27, 30] | [cite_start]도로 파손, 가로등 고장 판별 및 **긴급 점수 산출** [cite: 32, 33] |
+| **02** | **Routing** | 문제 유형별 담당 부서 자동 매칭 [cite: 46, 47] | [cite_start]**ChromaDB** 연동을 통한 최적의 유관 부서 검색 [cite: 46] |
+| **03** | **Generate & Verify** | 신고문 생성 및 품질 검증 [cite: 51, 53, 61] | [cite_start]신뢰도 기반 **최대 3회 재생성(Regenerate) 루프** [cite: 57, 59] |
+| **04** | **Dispatch** | 최종 신고 내용 대외 발송 [cite: 66] |]**SMTP 기반** 자동 이메일 발송 및 첨부파일 관리 [cite: 63, 64] |
+## 3. 주요 기능 및 시연
 
-```bash
-npm install
-```
+###  01. 서비스 시작 및 권한 인증
+사용자의 개인정보 보호와 정확한 위치 기반 신고를 위한 필수 설정 단계입니다.
 
-### 2. 개발 서버 실행
-
-```bash
-npm run dev
-```
-
-애플리케이션이 `http://localhost:3000`에서 실행됩니다.
-
-### 3. 빌드
-
-```bash
-npm run build
-```
-
-### 4. 프리뷰
-
-```bash
-npm run preview
-```
-
-## 프로젝트 구조 📁
-
-```
-hackerton/
-├── components/           # React 컴포넌트들
-│   ├── ui/              # 재사용 가능한 UI 컴포넌트들
-│   ├── figma/           # Figma 관련 컴포넌트들
-│   ├── CameraCapture.tsx # 카메라 촬영 및 신고 제출
-│   ├── MainScreen.tsx   # 메인 화면 및 탭 네비게이션
-│   ├── MapView.tsx      # 지도 뷰 컴포넌트
-│   ├── PermissionScreen.tsx # 권한 요청 화면
-│   └── ReportList.tsx   # 신고 내역 리스트
-├── src/                 # 메인 소스 코드
-│   ├── App.tsx         # 메인 앱 컴포넌트
-│   └── main.tsx        # 앱 엔트리 포인트
-├── styles/             # 스타일 파일들
-│   └── globals.css     # 전역 CSS 및 Tailwind 설정
-└── public/             # 정적 파일들
-```
-
-## 사용 방법 📱
-
-### 1. 권한 허용
-- 앱 실행 시 카메라 및 위치 권한을 허용해주세요
-- 권한이 없어도 파일 업로드로 이용 가능합니다
-
-### 2. 문제 신고
-- **신고** 탭에서 카메라로 촬영하거나 파일을 업로드하세요
-- 상황 설명을 추가로 작성할 수 있습니다
-- **신고 제출하기** 버튼을 눌러 제출하세요
-
-### 3. 신고 내역 확인
-- **내역** 탭에서 제출한 신고들을 확인할 수 있습니다
-- AI 분석 결과와 처리 상태를 볼 수 있습니다
-
-### 4. 지도에서 확인
-- **지도** 탭에서 신고 위치들을 시각적으로 확인할 수 있습니다
-- 마커를 클릭하면 해당 신고의 상세 정보를 볼 수 있습니다
-
-## 특징 🎯
-
-### AI 기능
-- 업로드된 사진을 분석하여 문제 유형을 자동으로 분류
-- GPS 정보가 없을 때 사진과 설명을 바탕으로 위치를 추정
-
-### 반응형 디자인
-- 모바일 우선 설계로 다양한 화면 크기에 최적화
-- 터치 친화적인 인터페이스
-
-### 접근성
-- 시각적 피드백과 명확한 상태 표시
-- 키보드 네비게이션 지원
-
-## 개발 참고사항 💡
-
-### 환경 변수
-현재 데모 버전으로 실제 백엔드 연동은 포함되어 있지 않습니다. 실제 배포 시에는 다음과 같은 환경 변수들이 필요할 수 있습니다:
-
-- `VITE_API_URL`: 백엔드 API URL
-- `VITE_MAP_API_KEY`: 지도 서비스 API 키
-- `VITE_AI_API_KEY`: AI 분석 서비스 API 키
-
-### 브라우저 지원
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-## 라이선스 📄
-
-이 프로젝트는 MIT 라이선스 하에 배포됩니다.
-
-## 기여하기 🤝
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+| **권한 요청 화면** | **핵심 가치** |
+| :---: | :--- |
+| <img width="250" src="https://github.com/user-attachments/assets/d9d0c3fe-9ae8-468d-9222-741941221590" /> | • **신뢰 기반 인터페이스**: 카메라 및 위치 권한 필요성 명시 [cite: 67][cite_start]<br>• **간편한 시작**: 원클릭 권한 허용으로 즉시 서비스 진입 |
 
 ---
 
-**우리동네 리포터**로 더 나은 동네를 만들어보세요! 🌟
+###  02. 발견 및 촬영 (단 30초!)
+현장의 문제를 포착하고 상세 정보를 입력하는 단계입니다. [cite_start]사진만 찍으면 모든 과정은 AI가 처리합니다. 
+
+| **사진 촬영** | **상황 설명** |
+| :---: | :---: |
+| <img width="250" src="https://github.com/user-attachments/assets/a94c3aa7-5273-408f-8a1c-1dc8d6421f30" /> | <img width="250" src="https://github.com/user-attachments/assets/981d69b6-c385-42e2-80ec-7dd16b279569" /> |
+| **현장 포착**: 문제 상황 즉시 촬영  | **정보 보완**: AI 분석을 돕는 추가 설명 입력  |
+
+---
+
+###  03. AI 분석 및 자동 접수
+[cite_start]멀티 에이전트 시스템이 유형 분석부터 부서 매칭까지 자동으로 처리하여 행정 절차를 혁신합니다. 
+
+| **AI 분석 프로세스** | **자동 부서 매칭** |
+| :---: | :---: |
+| <img width="250" src="https://github.com/user-attachments/assets/f0a09e14-9ed6-4fd9-800c-8a865946eb60" /> | <img width="250" src="https://github.com/user-attachments/assets/e6d6b7ea-7622-4975-89f6-405076b5f439" /> |
+| **지능형 판별**: 사진 기반 유형 및 긴급도 분류 ] | **행정 효율**: 최적 담당 부서 자동 라우팅  |
+
+---
+
+###  04. 접수 내역 및 지도 기반 확인
+신고 현황을 실시간으로 확인하고 지도상에서 시각화된 데이터를 제공합니다.
+
+| **신고 내역 리스트** | **상세 정보 확인** | **지도 뷰(Map)** |
+| :---: | :---: | :---: |
+| <img width="220" src="https://github.com/user-attachments/assets/2d5e9335-709a-46ba-bc27-33bcbc492f35" /> | <img width="220" alt="image" src="https://github.com/user-attachments/assets/9e4a7e9a-1c13-442d-9f7e-db9b5c5d0ff3" /> | <img width="220" src="https://github.com/user-attachments/assets/ba686908-413c-497d-8482-56c8e44e3196" /> |
+| 진행 상태 실시간 모니터링 | ]AI 분석 결과 및 접수 일자 | 우리 동네 신고 현황 시각화 |
+
+###  05. 주요 특징 
+
+| 분류 | 상세 내용 | 기대 효과 |
+| :--- | :--- | :--- |
+| **AI 지능형 행정** | • 업로드된 사진을 분석하여 **문제 유형 자동 분류** | • GPS 부재 시 사진/설명을 기반으로 **위치 추정** | 신속한 민원 분류 및 데이터 정확도 향상 |
+| **모바일 우선 설계** | • **반응형 디자인**: 다양한 화면 크기 최적화 <br> | • **터치 친화적 인터페이스**: 현장 신고 최적화 | 언제 어디서나 끊김 없는 신고 경험 제공 |
+| **포용적 접근성** | • **시각적 피드백**: 명확한 상태 표시 및 알림 <br> | • **디지털 취약계층 지원**: 사진 한 장으로 끝나는 간편 UI | 누구나 소외됨 없는 우리 동네 민원 참여 |
+
+
+
+## 기술 스택 
+
+| 구분 | 내용 |
+| :--- | :--- |
+| **언어 및 기반** | ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black) |
+| **프레임워크/라이브러리** | ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) |
+| **AI 및 데이터** | ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white) ![ChromaDB](https://img.shields.io/badge/ChromaDB-5462eb?style=for-the-badge) |
+| **도구 및 배포** | ![VS Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white) ![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) |
+| **주요 API/시스템** | ![SMTP](https://img.shields.io/badge/SMTP_Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white) ![Exif](https://img.shields.io/badge/EXIF_Data-blue?style=for-the-badge) |
+
+
+## 참고사항
+**현재 프로젝트는 MVP(Minimum Viable Product) 1.0 초기 버전으로, 핵심 기능을 검증하기 위한 데모 버전입니다.** 
