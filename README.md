@@ -25,7 +25,7 @@
 | **01** | <img width="300" alt="image" src="https://github.com/user-attachments/assets/cb133dda-633e-446b-89d9-7cf286a503d7" /><img width="300" alt="image" src="https://github.com/user-attachments/assets/74944eab-a173-4f8e-88a4-7fcc192e1547" /> | **Preprocess & Vision Agent** <br>• 사진 데이터(EXIF) 분석을 통한 위치/시간 정보 추출 <br>• 비전 분석으로 도로 파손, 가로등 고장 등 객체 감지 <br>• 위험도에 따른 **긴급 점수(Severity Score) 산출** |
 | **02** | <img width="300" alt="image" src="https://github.com/user-attachments/assets/a8aeb65e-8bfd-4c76-82f2-72249eb1a762" /> | **Routing Agent** <br>• 분석된 카테고리를 바탕으로 유관 부서 검색 <br>• **ChromaDB 기반 벡터 매칭**을 통해 최적의 부서 선정 <br>• 예: 도로파손 → 도로관리과, 가로등 → 전기안전과 매칭 |
 | **03** | <img width="300" alt="image" src="https://github.com/user-attachments/assets/55d29601-5118-4669-a1a6-25bde66b37c9" /> | **Generate & Verify Agent** <br>• Vision/EXIF 정보를 통합하여 **공식 신고문 자동 생성** <br>• 생성된 문장의 신뢰도 및 품질 자동 검증 <br>• 신뢰도 미달 시 **최대 3회 재시도(Regenerate) 루프** 수행 |
-| **04** | <img width="300" alt="image" src="https://github.com/user-attachments/assets/314a0066-17c2-4590-84f4-edfa5529288f" /><img width="300" alt="image" src="https://github.com/user-attachments/assets/2ec65fd3-62fd-4255-a5d9-7d3774656d1c" /> | **Dispatch Agent** [cite: 66][cite_start]<br>• 최종 검증된 신고 내용을 **SMTP 기반으로 자동 발송** <br>• 분석된 현장 사진을 첨부하여 담당자에게 즉시 전달 <br>• 전송 실패 시 자동 재발송 및 오류 관리 |
+| **04** | <img width="300" alt="image" src="https://github.com/user-attachments/assets/314a0066-17c2-4590-84f4-edfa5529288f" /><img width="300" alt="image" src="https://github.com/user-attachments/assets/2ec65fd3-62fd-4255-a5d9-7d3774656d1c" /> | **Dispatch Agent** <br>• 최종 검증된 신고 내용을 **SMTP 기반으로 자동 발송** <br>• 분석된 현장 사진을 첨부하여 담당자에게 즉시 전달 <br>• 전송 실패 시 자동 재발송 및 오류 관리 |
 
 
 
@@ -56,7 +56,7 @@
 | **AI 분석 프로세스** | **자동 부서 매칭** |
 | :---: | :---: |
 | <img width="250" src="https://github.com/user-attachments/assets/f0a09e14-9ed6-4fd9-800c-8a865946eb60" /> | <img width="250" src="https://github.com/user-attachments/assets/e6d6b7ea-7622-4975-89f6-405076b5f439" /> |
-| **지능형 판별**: 사진 기반 유형 및 긴급도 분류 ] | **행정 효율**: 최적 담당 부서 자동 라우팅  |
+| **지능형 판별**: 사진 기반 유형 및 긴급도 분류 | **행정 효율**: 최적 담당 부서 자동 라우팅  |
 
 ---
 
