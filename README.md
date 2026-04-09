@@ -91,5 +91,14 @@
 | **주요 API/시스템** | ![SMTP](https://img.shields.io/badge/SMTP_Mail-D14836?style=for-the-badge&logo=gmail&logoColor=white) ![Exif](https://img.shields.io/badge/EXIF_Data-blue?style=for-the-badge) |
 
 
+## 팀원 소개
+
+| <img src="이미지주소" width="100"> | <img src="이미지주소" width="100"> | <img src="이미지주소" width="100"> | <img src="이미지주소" width="100"> |
+| :---: | :---: | :---: | :---: |
+| **김태준** | **이민지** | **조수연** | **문준현** |
+| UI, Frontend, AI | Frontend, AI | Backend, AI | Backend, DB, AI |
+| [![github](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/jakemoti0n) | [![github](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/깃허브ID) | [![github](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/깃허브ID) | [![github](https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/깃허브ID) |
+
+
 ## 참고사항
 **현재 프로젝트는 MVP(Minimum Viable Product) 1.0 초기 버전으로, 핵심 기능을 검증하기 위한 데모 버전입니다.** 
